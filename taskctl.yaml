@@ -33,11 +33,11 @@ tasks:
     command: npm install
 
   build:env:
-    command: cp .env.dist .env
+    command: php -r "copy('.env.dist', '.env');"
   
   heroku:compile:
     command:
-      - cp deploy/heroku/.env .env
+      - php -r "copy('deploy/heroku/.env', '.env');"
       - php console/yii migrate/fresh
       - php console/yii app/setup --interactive=0
     env:
